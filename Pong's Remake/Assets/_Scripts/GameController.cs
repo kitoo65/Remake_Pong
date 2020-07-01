@@ -13,6 +13,14 @@ public class GameController : MonoBehaviour
         
     }
 
+   
+
+    // Update is called once per frame
+    void Update()
+    {
+        MeasureScreen();
+    }
+
     void MeasureScreen()
     {
         float camDistance = Vector3.Distance(transform.position, Camera.main.transform.position);
@@ -23,11 +31,5 @@ public class GameController : MonoBehaviour
         maxX = topCorner.x;
         minY = bottomCorner.y;
         maxY = topCorner.y;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        MeasureScreen();
     }
 }

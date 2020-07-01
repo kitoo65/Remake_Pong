@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Player1
   - Player2
+  - LateralCollider
+  - SideP1Collider
+  - SideP2Collider
   layers:
   - Default
   - TransparentFX
