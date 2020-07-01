@@ -43,7 +43,6 @@ public class Ball : MonoBehaviour
     {
         float offset = 0.3f;
         halfHeightBall = spriteRendererBall.bounds.size.y / 2 + offset;
-        Debug.Log(halfHeightBall);
     }
     // Update is called once per frame
     void Update()
@@ -85,11 +84,19 @@ public class Ball : MonoBehaviour
             movementDirection.x = -movementDirection.x;
             RandomizeMovement();
         }
-        if (coll.gameObject.CompareTag("SideP1Collider") || coll.gameObject.CompareTag("SideP2Collider"))
+        if (coll.gameObject.CompareTag("SideP1Collider"))
         {
-            movementDirection.x = -movementDirection.x;
+            Destroy(gameObject);
+            gameControllerScript.Score(1);
+
 
         }
+        if (coll.gameObject.CompareTag("SideP2Collider"))
+        {
+            Destroy(gameObject);
+            gameControllerScript.Score(2);
+        }
+        
     }
     void RandomizeMovement()
     {
