@@ -4,19 +4,14 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
+
     //Camera Boundaries:
     public float minX, maxX, minY, maxY;
 
+
+
     // Start is called before the first frame update
     void Start()
-    {
-        
-    }
-
-   
-
-    // Update is called once per frame
-    void Update()
     {
         MeasureScreen();
     }
@@ -32,4 +27,14 @@ public class GameController : MonoBehaviour
         minY = bottomCorner.y;
         maxY = topCorner.y;
     }
+   
+   
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+
 }
