@@ -17,7 +17,9 @@ public class Ball : MonoBehaviour
 
     [SerializeField] GameObject gameControllerGO;
     [SerializeField] GameController gameControllerScript;
-    
+    [SerializeField] GameObject soundFXsManagerGO;
+    [SerializeField] SoundFXsManager soundFXsManagerScript;
+
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +34,8 @@ public class Ball : MonoBehaviour
         gameControllerGO = FindObjectOfType<GameController>().gameObject;
         gameControllerScript = gameControllerGO.GetComponent<GameController>();
         spriteRendererBall = gameObject.GetComponent<SpriteRenderer>();
+        soundFXsManagerGO = FindObjectOfType<SoundFXsManager>().gameObject;
+        soundFXsManagerScript = soundFXsManagerGO.GetComponent<SoundFXsManager>();
     }
     void SetDirectionAndSpeed()
     {
@@ -73,21 +77,28 @@ public class Ball : MonoBehaviour
         if(coll.gameObject.CompareTag("LateralCollider"))
         {
             movementDirection.y = -movementDirection.y;
+            soundFXsManagerScript.PlayBounceSFX();
         }
         if (coll.gameObject.CompareTag("Player1"))
         {
             movementDirection.x = -movementDirection.x;
             RandomizeMovement();
+            soundFXsManagerScript.PlayBounceSFX();
+
         }
         if (coll.gameObject.CompareTag("Player2"))
         {
             movementDirection.x = -movementDirection.x;
             RandomizeMovement();
+            soundFXsManagerScript.PlayBounceSFX();
+
         }
         if (coll.gameObject.CompareTag("SideP1Collider"))
         {
             Destroy(gameObject);
             gameControllerScript.Score(1);
+            soundFXsManagerScript.PlayScoreSFX();
+
 
 
         }
@@ -95,8 +106,10 @@ public class Ball : MonoBehaviour
         {
             Destroy(gameObject);
             gameControllerScript.Score(2);
+            soundFXsManagerScript.PlayScoreSFX();
+ 
         }
-        
+
     }
     void RandomizeMovement()
     {

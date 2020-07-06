@@ -5,15 +5,18 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
-    //Score. The ball interacts with the scoreColliders or side colliders and the Player Scores!
-   //Show Score.
-
-        //TODO> UI Score text! -  Sound of Scoring - 
+   
+        //TODO> UI MENUS
 
     //Camera Boundaries:
     public float minX, maxX, minY, maxY;
     public int scoreP1;
     public int scoreP2;
+
+
+    //UI variables
+    public Text scoreP1Text;
+    public Text scoreP2Text;
 
     [SerializeField] GameObject ballGO;
 
@@ -22,14 +25,15 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //GetComponents();
+      //  GetComponents();
         MeasureScreen();
     }
 
-   /* void GetComponents()
-    {
-    }
-    */
+  // void GetComponents()
+  //  {
+
+  //  }
+    
     void MeasureScreen()
     {
         float camDistance = Vector3.Distance(transform.position, Camera.main.transform.position);
@@ -58,12 +62,14 @@ public class GameController : MonoBehaviour
     {
         //text Player 1 Scores!
         scoreP1++;
+        scoreP1Text.text = scoreP1.ToString();
     }
     void ScoreP2()
     {
         //text Player 2 Scores!
 
         scoreP2++;
+        scoreP2Text.text = scoreP2.ToString();
     }
     void Reload()
     {
