@@ -37,6 +37,7 @@ public class Ball : MonoBehaviour
         soundFXsManagerGO = FindObjectOfType<SoundFXsManager>().gameObject;
         soundFXsManagerScript = soundFXsManagerGO.GetComponent<SoundFXsManager>();
     }
+
     void SetDirectionAndSpeed()
     {
         movementDirection = startingDirections[Random.Range(0, startingDirections.Length)];
@@ -116,6 +117,32 @@ public class Ball : MonoBehaviour
         speed = Random.Range(0.2f, 0.6f);
         movementDirection.y = startingDirections[Random.Range(0,startingDirections.Length)].y;
     }
+
+    //appear code #TODO
+    /*
+    void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.T))
+        {
+            StartCoroutine(FadeTo(0.0f, 1.0f));
+        }
+        if (Input.GetKeyUp(KeyCode.F))
+        {
+            StartCoroutine(FadeTo(1.0f, 1.0f));
+        }
+    }
+
+    IEnumerator FadeTo(float aValue, float aTime)
+    {
+        float alpha = transform.renderer.material.color.a;
+        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / aTime)
+        {
+            Color newColor = new Color(1, 1, 1, Mathf.Lerp(alpha, aValue, t));
+            transform.renderer.material.color = newColor;
+            yield return null;
+        }
+    }
+    */
 
 
 }

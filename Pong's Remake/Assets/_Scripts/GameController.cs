@@ -19,6 +19,8 @@ public class GameController : MonoBehaviour
     public Text scoreP2Text;
 
     [SerializeField] GameObject ballGO;
+    enum State { Playing, Paused, Serving };
+    State state = State.Serving;
 
 
 
@@ -81,7 +83,14 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P))
+        {
+
+            Debug.Log("PauseState");
+            state = State.Paused;
+            //pause!!
+        }
+      
     }
 
 
