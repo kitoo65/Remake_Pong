@@ -61,8 +61,15 @@ public class Ball : MonoBehaviour
 
     void FixedUpdate()
     {
-
-        MoveBall();
+        if (gameControllerScript.state == GameController.State.Serving)
+        {
+            StartCoroutine(gameControllerScript.Serving());
+        }
+        else if (gameControllerScript.state == GameController.State.Playing)
+        {
+            MoveBall();
+        }
+        
         
     }
     void MoveBall()
@@ -99,6 +106,7 @@ public class Ball : MonoBehaviour
             Destroy(gameObject);
             gameControllerScript.Score(1);
             soundFXsManagerScript.PlayScoreSFX();
+            gameControllerScript.state = GameController.State.Serving;
 
 
 
@@ -108,7 +116,10 @@ public class Ball : MonoBehaviour
             Destroy(gameObject);
             gameControllerScript.Score(2);
             soundFXsManagerScript.PlayScoreSFX();
- 
+
+            gameControllerScript.state = GameController.State.Serving;
+
+
         }
 
     }

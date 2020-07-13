@@ -17,10 +17,12 @@ public class GameController : MonoBehaviour
     //UI variables
     public Text scoreP1Text;
     public Text scoreP2Text;
+    [SerializeField] GameObject pausePanelGO;
 
     [SerializeField] GameObject ballGO;
-    enum State { Playing, Paused, Serving };
-    State state = State.Serving;
+    [SerializeField] Ball ballScript;
+   public enum State { Playing, Paused, Serving };
+   public State state = State.Serving;
 
 
 
@@ -77,18 +79,32 @@ public class GameController : MonoBehaviour
     {
         Instantiate(ballGO, new Vector3(0, 0, 0), Quaternion.identity);
     }
+
+    public void PauseGame()
+    {
+        //animacion de recuadro de pause
+        pausePanelGO.SetActive(true);
+        Time.timeScale = 0;
+
+    }
    
-   
+   public IEnumerator Serving()
+    {
+
+        yield return new WaitForSeconds(2);
+       
+        state = State.Playing;
+    }
 
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P))
         {
+            PauseGame();
 
-            Debug.Log("PauseState");
             state = State.Paused;
-            //pause!!
+            
         }
       
     }
